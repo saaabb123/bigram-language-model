@@ -19,4 +19,9 @@ for name in names:
 # count occurrence of bigrams
 bigram_counts = Counter(bigrams)
 
-
+# calculate probability of each bigram
+bigram_prob = {}
+for bigram, count in bigram_counts.items():
+    preceding_letter = bigram[0]
+    prob = count / sum(bigram_counts[ngram] for ngram in bigram_counts.keys() if ngram[0] == preceding_letter)
+    bigram_prob[bigram] = prob
